@@ -1299,19 +1299,21 @@
                     <div id="success"></div>
 
                     <form id="contactForm"
-                          name="sentMessage"
+                          name="contact"
+                          method="POST"
+                          action="/"
+                          data-netlify="true"
+                          data-netlify-honeypot="bot-field"
                           novalidate="novalidate">
 
-                        <div class="control-group">
+                    <input type="hidden" name="form-name" value="contact">
 
-                            <input type="text"
-                                   class="form-control"
-                                   id="name"
-                                   placeholder="Tu nombre"
-                                   required="required"
-                                   data-validation-required-message="Por favor ingresa tu nombre">
-
-                            <p class="help-block text-danger"></p>
+                    <p class="hidden-honeypot">
+                        <label>
+                            No llenar:
+                            <input name="bot-field">
+                        </label>
+                    </p>
 
                         </div>
 
@@ -1321,6 +1323,7 @@
                             <input type="email"
                                    class="form-control"
                                    id="email"
+                                   name="email"
                                    placeholder="Tu correo"
                                    required="required"
                                    data-validation-required-message="Por favor ingresa tu correo">
@@ -1335,6 +1338,7 @@
                             <input type="text"
                                    class="form-control"
                                    id="subject"
+                                   name="subject"
                                    placeholder="Asunto"
                                    required="required"
                                    data-validation-required-message="Por favor ingresa el asunto">
@@ -1348,6 +1352,7 @@
 
                             <textarea class="form-control"
                                       id="message"
+                                      name="message"
                                       placeholder="Mensaje"
                                       required="required"
                                       data-validation-required-message="Por favor escribe un mensaje"></textarea>

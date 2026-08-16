@@ -1,65 +1,100 @@
 $(function () {
 
-    $("#contactForm input, #contactForm textarea").jqBootstrapValidation({
-        preventSubmit: true,
-        submitError: function ($form, event, errors) {
-        },
-        submitSuccess: function ($form, event) {
-            event.preventDefault();
-            var name = $("input#name").val();
-            var email = $("input#email").val();
-            var subject = $("input#subject").val();
-            var message = $("textarea#message").val();
+    "use strict";
 
-            $this = $("#sendMessageButton");
-            $this.prop("disabled", true);
+    $("#contactForm").on("submit", function (event) {
 
-            $.ajax({
-                url: "contact.php",
-                type: "POST",
-                data: {
-                    name: name,
-                    email: email,
-                    subject: subject,
-                    message: message
-                },
-                cache: false,
-                success: function () {
-                    $('#success').html("<div class='alert alert-success'>");
-                    $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                            .append("</button>");
-                    $('#success > .alert-success')
-                            .append("<strong>Your message has been sent. </strong>");
-                    $('#success > .alert-success')
-                            .append('</div>');
-                    $('#contactForm').trigger("reset");
-                },
-                error: function () {
-                    $('#success').html("<div class='alert alert-danger'>");
-                    $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                            .append("</button>");
-                    $('#success > .alert-danger').append($("<strong>").text("Sorry " + name + ", it seems that our mail server is not responding. Please try again later!"));
-                    $('#success > .alert-danger').append('</div>');
-                    $('#contactForm').trigger("reset");
-                },
-                complete: function () {
-                    setTimeout(function () {
-                        $this.prop("disabled", false);
-                    }, 1000);
+        event.preventDefault();
+
+        const form = this;
+        const $form = $(form);
+        const $button = $("#sendMessageButton");
+        const $success = $("#success");
+
+        // Limpiar mensajes anteriores
+        $success.html("");
+
+        // Validación básica
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        // Deshabilitar botón mientras se envía
+        $button.prop("disabled", true);
+
+        // Crear FormData
+        const formData = new FormData(form);
+
+        // Convertir los datos para Netlify
+        const encodedData = new URLSearchParams(formData).toString();
+
+        fetch("/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: encodedData
+        })
+            .then(response => {
+
+                if (!response.ok) {
+                    throw new Error("Error al enviar el formulario");
                 }
+
+                $success.html(`
+                    <div class="alert alert-success">
+                        <button type="button"
+                                class="close"
+                                data-dismiss="alert"
+                                aria-hidden="true">
+                            &times;
+                        </button>
+
+                        <strong>
+                            ¡Mensaje enviado correctamente!
+                        </strong>
+
+                        <p class="mb-0">
+                            Gracias por contactarme. Me pondré en contacto contigo
+                            lo antes posible.
+                        </p>
+                    </div>
+                `);
+
+                form.reset();
+            })
+            .catch(error => {
+
+                console.error("Error:", error);
+
+                $success.html(`
+                    <div class="alert alert-danger">
+                        <button type="button"
+                                class="close"
+                                data-dismiss="alert"
+                                aria-hidden="true">
+                            &times;
+                        </button>
+
+                        <strong>
+                            No fue posible enviar el mensaje.
+                        </strong>
+
+                        <p class="mb-0">
+                            Por favor inténtalo nuevamente más tarde.
+                        </p>
+                    </div>
+                `);
+            })
+            .finally(() => {
+
+                setTimeout(() => {
+                    $button.prop("disabled", false);
+                }, 1000);
+
             });
-        },
-        filter: function () {
-            return $(this).is(":visible");
-        },
+
     });
 
-    $("a[data-toggle=\"tab\"]").click(function (e) {
-        e.preventDefault();
-        $(this).tab("show");
-    });
-});
-
-$('#name').focus(function () {
-    $('#success').html('');
 });
