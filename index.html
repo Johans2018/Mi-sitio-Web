@@ -1215,18 +1215,16 @@
 
     </div>
 
-
     <!-- ========================================================= -->
     <!-- CONTACT -->
     <!-- ========================================================= -->
 
-    <div class="contact"
-         id="contact">
+    <div class="contact" id="contact">
 
         <div class="container">
 
             <div class="section-header text-center wow zoomIn"
-                 data-wow-delay="0.1s">
+             data-wow-delay="0.1s">
 
                 <p>Hablemos</p>
 
@@ -1234,67 +1232,66 @@
 
             </div>
 
+        <div class="row">
 
-            <div class="row">
+            <!-- INFORMACIÓN DE CONTACTO -->
+            <div class="col-md-5">
 
+                <div class="contact-info">
 
-                <div class="col-md-5">
+                    <h3>¿Tienes un proyecto o una oportunidad?</h3>
 
-                    <div class="contact-info">
+                    <p>
+                        Estoy abierto a nuevas oportunidades profesionales,
+                        proyectos relacionados con QA Automation y desafíos
+                        tecnológicos.
+                    </p>
 
-                        <h3>¿Tienes un proyecto o una oportunidad?</h3>
+                    <div class="contact-info-item">
 
-                        <p>
-                            Estoy abierto a nuevas oportunidades profesionales,
-                            proyectos relacionados con QA Automation y desafíos
-                            tecnológicos.
-                        </p>
+                        <div class="contact-info-icon">
 
-
-                        <div class="contact-info-item">
-
-                            <div class="contact-info-icon">
-
-                                <i class="fa fa-map-marker-alt"></i>
-
-                            </div>
-
-                            <div class="contact-info-text">
-
-                                <h3>Ubicación</h3>
-
-                                <p>Colombia</p>
-
-                            </div>
+                            <i class="fa fa-map-marker-alt"></i>
 
                         </div>
 
+                        <div class="contact-info-text">
 
-                        <div class="contact-info-item">
+                            <h3>Ubicación</h3>
 
-                            <div class="contact-info-icon">
-
-                                <i class="fa fa-envelope"></i>
-
-                            </div>
-
-                            <div class="contact-info-text">
-
-                                <h3>Email</h3>
-
-                                <p>jhb1927@hotmail.com</p>
-
-                            </div>
+                            <p>Colombia</p>
 
                         </div>
 
+                    </div>
+
+                    <div class="contact-info-item">
+
+                        <div class="contact-info-icon">
+
+                            <i class="fa fa-envelope"></i>
+
+                        </div>
+
+                        <div class="contact-info-text">
+
+                            <h3>Email</h3>
+
+                            <p>jhb1927@hotmail.com</p>
+
+                        </div>
 
                     </div>
 
                 </div>
 
+            </div>
 
-                <div class="col-md-7">
+
+            <!-- FORMULARIO -->
+            <div class="col-md-7">
+
+                <div class="contact-form">
 
                     <div id="success"></div>
 
@@ -1306,18 +1303,39 @@
                           data-netlify-honeypot="bot-field"
                           novalidate="novalidate">
 
-                    <input type="hidden" name="form-name" value="contact">
+                        <!-- Netlify Forms -->
+                        <input type="hidden"
+                               name="form-name"
+                               value="contact">
 
-                    <p class="hidden-honeypot">
-                        <label>
-                            No llenar:
-                            <input name="bot-field">
-                        </label>
-                    </p>
+                        <!-- Honeypot anti-spam -->
+                        <p class="hidden-honeypot">
+
+                            <label>
+                                No llenar:
+                                <input name="bot-field">
+                            </label>
+
+                        </p>
+
+
+                        <!-- NOMBRE -->
+                        <div class="control-group">
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="name"
+                                   name="name"
+                                   placeholder="Tu nombre"
+                                   required="required"
+                                   data-validation-required-message="Por favor ingresa tu nombre">
+
+                            <p class="help-block text-danger"></p>
 
                         </div>
 
 
+                        <!-- EMAIL -->
                         <div class="control-group">
 
                             <input type="email"
@@ -1333,6 +1351,7 @@
                         </div>
 
 
+                        <!-- ASUNTO -->
                         <div class="control-group">
 
                             <input type="text"
@@ -1348,6 +1367,7 @@
                         </div>
 
 
+                        <!-- MENSAJE -->
                         <div class="control-group">
 
                             <textarea class="form-control"
@@ -1362,26 +1382,31 @@
                         </div>
 
 
+                        <!-- BOTÓN -->
                         <div>
 
-                            <button type="submit" id="sendMessageButton">
+                            <button type="submit"
+                                    id="sendMessageButton">
+
                                 <i class="fa fa-paper-plane"></i>
+
                                 <span>Enviar mensaje</span>
+
                             </button>
 
                         </div>
 
                     </form>
 
-                </div>
+                    </div>
 
+                </div>
 
             </div>
 
         </div>
 
     </div>
-
 
     <!-- ========================================================= -->
     <!-- FOOTER -->
